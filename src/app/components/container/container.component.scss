@@ -1,0 +1,23 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 75px;
+  padding-right: 75px;
+  max-width: 1140px;
+  // outline: 1px solid tomato;
+}
+
+.read-more-btn {
+  color: var(--secondary-text-cl);
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  border: 1px solid transparent;
+  background-color: var(--main-bg-cl);
+}
+
+.icon-arrow {
+  width: 12px;
+  height: 10px;
+}

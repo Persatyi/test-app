@@ -1,0 +1,56 @@
+.header {
+  margin: 0 auto;
+  max-width: 1440px;
+  background-color: #2f303a;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.content-section {
+  padding-bottom: 45px;
+  margin-top: -95px;
+}
+
+.card {
+  border-radius: 5px;
+  border: 1px solid #eaeaea;
+  background: var(--main-bg-cl);
+  box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.05);
+  padding: 35px 75px 50px 75px;
+}
+
+.card-title {
+  color: var(--secondary-text-cl);
+  font-family: Montserrat;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.card-text {
+  color: var(--main-text-cl);
+  font-family: Montserrat;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.go-home-btn {
+  color: var(--secondary-text-cl);
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  border: 1px solid transparent;
+  background-color: var(--main-bg-cl);
+  margin-left: 90px;
+  margin-top: 35px;
+}
+
+.icon-arrow {
+  width: 12px;
+  height: 10px;
+}

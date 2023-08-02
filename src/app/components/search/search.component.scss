@@ -13,7 +13,7 @@
 
 .search-input {
   width: 600px;
-  padding: 13px 100px 13px 40px;
+  padding: 13px 100px 13px 60px;
   border-radius: 5px;
   border: 1px solid #eaeaea;
   background: #fff;
@@ -34,19 +34,19 @@
   }
 
   &:focus {
-    outline: 1px solid #0000ff;
+    outline: 1px solid var(--input-cl);
   }
 
   &:focus + .search-icon {
-    color: #0000ff;
+    fill: var(--input-cl);
   }
 }
 
 .search-icon {
   position: absolute;
-  top: 11px;
+  top: 6px;
   left: 10px;
   width: 20px;
   height: 20px;
-  color: var(--input-text-cl);
+  fill: var(--input-text-cl);
 }

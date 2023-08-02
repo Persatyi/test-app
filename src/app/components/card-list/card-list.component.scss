@@ -29,8 +29,8 @@
 .icon-calendar {
   width: 16px;
   height: 16px;
-  fill: #363636;
   margin-right: 8px;
+  opacity: 0.6;
 }
 
 .date {
@@ -39,6 +39,7 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
+  opacity: 0.6;
 }
 
 .card-title {
