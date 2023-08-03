@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { RouterModule, RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
@@ -18,6 +18,7 @@ import { CardListComponent } from './components/card-list/card-list.component';
 import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
 import { CardDetailsComponent } from './components/card-details/card-details.component';
 import { DataService } from './services/data.service';
+import { CustomReuseStrategy } from './services/custom-reuse-strategy';
 import { MainPageComponent } from './components/main-page/main-page.component';
 
 @NgModule({
@@ -46,7 +47,12 @@ import { MainPageComponent } from './components/main-page/main-page.component';
       { path: 'cards/:cardId', component: CardDetailsComponent },
     ]),
   ],
-  providers: [DataService, SearchComponent, CardListComponent],
+  providers: [
+    DataService,
+    SearchComponent,
+    CardListComponent,
+    { provide: RouteReuseStrategy, useClass: CustomReuseStrategy },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

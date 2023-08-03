@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.keyword$
-      .pipe(debounceTime(300), distinctUntilChanged())
+      .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe((keyword: string) => {
         this.searchService.search(keyword);
       });

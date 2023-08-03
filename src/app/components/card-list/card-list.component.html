@@ -1,25 +1,34 @@
-<mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile *ngFor="let item of searchResults">
+<div *ngIf="countResults > 0" class="results-box">
+    <p class="results">Results: {{countResults}}</p>
+</div>
+<ul class="list">
+    <li class="list-item" *ngFor="let item of searchResults">
         <mat-card class="card">
-            <img class="image" mat-card-image [src]="item.image_url" [alt]="item.title">
+            <div class="image-box">
+                <img class="image" mat-card-image
+                    [src]="item.image_url ? item.image_url : '../../../assets/images/No_image_available.jpg'"
+                    [alt]="item.title">
+            </div>
             <mat-card-content class="card-content">
                 <div class="date-wrapper">
                     <app-svg-icon icon="icon-calendar" class="icon-calendar"></app-svg-icon>
-                    <span class="date">{{item.published_at}}</span>
+                    <span class="date">{{item.published_at | date: 'MMM '}} {{ getNumberWithSuffix(item.published_at |
+                        date: 'd')
+                        }}, {{ item.published_at | date: 'y' }}</span>
                 </div>
-                <mat-card-title class="card-title">{{item.title}}</mat-card-title>
+                <mat-card-title class="card-title" [innerHTML]="item.title">{{item.title}}</mat-card-title>
                 <div class="description-wrapper">
-                    <p class="card-description">
+                    <p class="card-description" [innerHTML]="item.summary">
                         {{item.summary}}
                     </p>
                 </div>
             </mat-card-content>
             <mat-card-actions class="card-actions">
-                <button mat-button class="read-more-btn" [routerLink]="['/cards', 'item.id']">
+                <button mat-button class="read-more-btn" [routerLink]="['/cards', item.id]">
                     Read more
                     <app-svg-icon icon="icon-arrow--right" class="icon-arrow"></app-svg-icon>
                 </button>
             </mat-card-actions>
         </mat-card>
-    </mat-grid-tile>
-</mat-grid-list>
+    </li>
+</ul>

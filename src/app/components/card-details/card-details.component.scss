@@ -5,7 +5,11 @@
 }
 
 .image {
-  object-fit: cover;
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  object-position: 50% 50%;
 }
 
 .content-section {
