@@ -1,33 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { DataService, IResponse } from 'src/app/services/data.service';
-import { CardListComponent } from '../card-list/card-list.component';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss', '../../../styles.scss'],
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit {
   keyword$ = new Subject<string>();
-  searchResults$: Observable<IResponse> | undefined;
 
-  constructor(
-    private searchService: DataService,
-    private cardList: CardListComponent
-  ) {}
+  constructor(private searchService: DataService) {}
 
   ngOnInit() {
-    this.searchResults$ = this.keyword$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((keyword: string) => this.searchService.search(keyword))
-    );
-
-    this.searchResults$.subscribe((data) => {
-      this.cardList.searchResults = data.results;
-    });
+    this.keyword$
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((keyword: string) => {
+        this.searchService.search(keyword);
+      });
   }
 
   onSearch(event: Event): void {

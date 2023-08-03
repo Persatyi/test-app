@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export interface IResults {
   id: number;
@@ -25,10 +26,22 @@ export interface IResponse {
 @Injectable()
 export class DataService {
   private baseUrl = 'https://api.spaceflightnewsapi.net/v4/articles/';
+  private searchResultsSubject = new Subject<IResults[]>();
+  public searchResults$ = this.searchResultsSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
-  search(query: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}?search=${query}&limit=10`);
+  search(query: string): void {
+    this.http
+      .get<IResponse>(`${this.baseUrl}?search=${query}&limit=10`)
+      .pipe(map((response) => response.results))
+      .subscribe(
+        (results: IResults[]) => {
+          this.searchResultsSubject.next(results);
+        },
+        (error) => {
+          console.error('Error fetching search results:', error);
+        }
+      );
   }
 }
