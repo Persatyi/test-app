@@ -36,7 +36,7 @@ export class DataService {
     this.searchQuerySubject.next(query);
 
     this.http
-      .get<IResponse>(`${this.baseUrl}?search=${query}&limit=10`)
+      .get<IResponse>(`${this.baseUrl}?search=${query}&limit=20`)
       .pipe(map((response) => response))
       .subscribe(
         (data: IResponse) => {
